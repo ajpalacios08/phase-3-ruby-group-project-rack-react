@@ -14,13 +14,13 @@ ActiveRecord::Schema.define(version: 2021_06_01_202821) do
 
   create_table "choices", force: :cascade do |t|
     t.string "text"
-    t.integer "scene_id"
+    t.integer "to_scene_id"
+    t.integer "from_scene_id"
   end
 
   create_table "scenes", force: :cascade do |t|
     t.string "text"
     t.integer "story_id"
-    t.integer "choice_id"
   end
 
   create_table "stories", force: :cascade do |t|

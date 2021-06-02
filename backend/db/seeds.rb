@@ -27,6 +27,6 @@ puts "Creating scenes and generating choices..."
 Story.all.each do |story|
     currScene = Scene.create(text: Faker::Quotes::Shakespeare.hamlet_quote, story_id: story.id)
     2.times do
-        Choice.create(text: Faker::Quote.yoda, scene_id: currScene)
+        Choice.create(text: Faker::Quote.yoda)
     end
 end
