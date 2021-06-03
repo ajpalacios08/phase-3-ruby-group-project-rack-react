@@ -12,12 +12,27 @@ import StoryEditor from './components/StoryEditor';
 
 class App extends React.Component{
 
+  constructor(){
+    super();
+    this.state = {
+      currentUser: {
+        user_id: 1
+      }
+    }
+  }
+
 
   render(){
     return(
         <Router>
           <div>
-          <Header />
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/story-editor">My Stories</Link>
+            </li>
+          </div>
           <Switch>
             <Route path="/story-editor">
               <StoryEditor />
@@ -26,7 +41,6 @@ class App extends React.Component{
               <Home />               
             </Route>
           </Switch>
-          </div>
         </Router>
     )
   }
