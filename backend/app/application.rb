@@ -1,4 +1,5 @@
 require 'json'
+require 'pry'
 
 class Application
 
@@ -11,7 +12,7 @@ class Application
     if req.path.match(/user-\d+\/stories/) && req.post?
       id = req.path.scan(/\d+/)
       rawData = JSON.parse(req.body.read)
-      puts rawData
+      binding.pry
       story = Story.create(name: rawData['name'] , description: rawData['description'],user_id: rawData['user_id'] )
       return [200, { 'Content-Type' => 'application/json' }, [ {:story => story}.to_json ]]
     elsif req.path.match(/user-\d+\/stories/)

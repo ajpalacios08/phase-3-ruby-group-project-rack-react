@@ -8,9 +8,11 @@ class Body extends React.Component{
     constructor () {
         super();
         this.state = {
-            name: "",
-            description: "",
-            user_id: 1
+            story: {
+                name: "",
+                description: "",
+                user_id: 1
+            }
         }
     }
 
@@ -19,12 +21,18 @@ class Body extends React.Component{
 
         console.log("Creating new story...");
 
-        axios.post(url + "stories", this.state)
+        axios.post(url + "stories", this.state.story)
         .then(console.log)
     }
 
     handleChange = (event) => {
-        this.setState({ [event.target.name]: event.target.value })
+        this.setState(
+            {story:
+                {
+                    ...this.state.story, 
+                    [event.target.name]: event.target.value 
+                }
+            })
     }
 
     render(){
@@ -32,8 +40,8 @@ class Body extends React.Component{
             <div>
                 Body
                 <form onSubmit={this.handleClick}>
-                    <input type="text" placeholder="Story Name" name="name" value={this.state.name} onChange={this.handleChange}/>
-                    <input type="text" placeholder="Description" name="description" value={this.state.description} onChange={this.handleChange} />
+                    <input type="text" placeholder="Story Name" name="name" value={this.state.story.name} onChange={this.handleChange}/>
+                    <input type="text" placeholder="Description" name="description" value={this.state.story.description} onChange={this.handleChange} />
                     <button>Create a story!</button>
                 </form>
             </div>
