@@ -14,10 +14,11 @@ class StoryContainer extends React.Component{
     }
     
     fetchUserStories() {
-    axios.get(url + "/stories").then(userData=>{
-        this.setState({stories: userData.data.message })
-        console.log(userData.data.message);
-    })
+        axios.get(url + "/stories", {crossDomain: true}, {withCredentials: true})
+        .then(userData=>{
+            this.setState({stories: userData.data.stories })
+            console.log(userData.data.stories);
+        })
     }
 
     renderStories(stories)

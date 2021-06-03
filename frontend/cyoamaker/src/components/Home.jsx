@@ -1,5 +1,6 @@
 import React from 'react';
 import StoryContainer from './StoryContainer';
+import Body from './Body';
 
 class Home extends React.Component{
 
@@ -8,6 +9,7 @@ class Home extends React.Component{
         return(
             <div>
                 Home
+                <Body/>
                 <StoryContainer/>
             </div>
         )
