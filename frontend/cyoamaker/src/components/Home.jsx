@@ -9,8 +9,8 @@ class Home extends React.Component{
         return(
             <div>
                 Home
-                <Body/>
-                <StoryContainer user={this.props.user}/>
+                <Body onStoryPost={this.props.onStoryPost}/>
+                <StoryContainer user={this.props.user} stories={this.props.stories}/>
             </div>
         )
 

@@ -21,8 +21,7 @@ class Body extends React.Component{
 
         console.log("Creating new story...");
 
-        axios.post(url + "stories", this.state.story)
-        .then(console.log)
+        this.props.onStoryPost(this.state.story);
     }
 
     handleChange = (event) => {

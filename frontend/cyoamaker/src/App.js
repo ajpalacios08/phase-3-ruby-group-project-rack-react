@@ -19,15 +19,40 @@ class App extends React.Component{
     super();
     this.state = {
       user: {
-        user_id: 1,
+        id: 1,
         name: ""
-      }
+      },
+      stories: [],
+      currStory: {}
     }
   }
 
   componentDidMount(){
     axios.get(baseURL + "/users")
-    .then( resp => this.setState({user: resp.data.users[0]}) )
+    .then( resp => {
+      this.setState({user: resp.data.users[0]});
+      this.fetchUserStories();
+      } 
+    )
+  }
+
+  fetchUserStories() {
+    let finalURL = `${baseURL}/user-${this.state.user.id}/stories`;
+
+    axios.get(finalURL)
+    .then(userData=>{
+        this.setState({stories: userData.data.stories })
+        this.setState({currStory: userData.data.stories[0]})
+        console.log(userData.data.stories);
+    })
+  }
+
+  onStoryPost(story)
+  {
+    let finalURL = `${baseURL}/user-${this.state.user.id}/stories`;
+
+    axios.post(finalURL, this.state.story)
+    .then(console.log)
   }
 
   render(){
@@ -43,10 +68,17 @@ class App extends React.Component{
           </div>
           <Switch>
             <Route path="/story-editor">
-              <StoryEditor />
+              <StoryEditor 
+                user={this.state.user} 
+                story={this.state.currStory} 
+              />
             </Route>
             <Route path="/">
-              <Home user={this.state.user}/>               
+              <Home 
+                onStoryPost={this.onStoryPost} 
+                user={this.state.user} 
+                stories={this.state.stories}
+              />               
             </Route>
           </Switch>
         </Router>
