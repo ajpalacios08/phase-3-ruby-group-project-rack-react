@@ -10,7 +10,7 @@ class Home extends React.Component{
             <div>
                 Home
                 <Body/>
-                <StoryContainer/>
+                <StoryContainer user={this.props.user}/>
             </div>
         )
 

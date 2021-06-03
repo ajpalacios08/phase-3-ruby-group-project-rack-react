@@ -1,20 +1,26 @@
 import React from 'react';
 import axios from 'axios';
 
-const url = 'http://localhost:9292/user-1'
+const baseURL = 'http://localhost:9292/user-1'
 
 class StoryContainer extends React.Component{
 
-    state = {
-        stories: []
+    constructor(){
+        super();
+        this.state = {
+            stories: []
+        }       
     }
+
 
     componentDidMount(){
         this.fetchUserStories()
     }
     
     fetchUserStories() {
-        axios.get(url + "/stories", {crossDomain: true}, {withCredentials: true})
+        let finalURL = `${baseURL}/user-${this.props.user.id}/stories`;
+        //finalURL = "http://localhost:9292/user-1/stories";
+        axios.get(finalURL, {crossDomain: true}, {withCredentials: true})
         .then(userData=>{
             this.setState({stories: userData.data.stories })
             console.log(userData.data.stories);
