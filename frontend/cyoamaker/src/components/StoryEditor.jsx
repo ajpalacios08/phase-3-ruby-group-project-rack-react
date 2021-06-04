@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import SceneEditor from './SceneEditor';
 
 let baseURL = "http://localhost:9292"
 
@@ -44,11 +45,7 @@ class StoryEditor extends React.Component
         return (
         <div>
             <h1>{this.props.story.name}</h1>
-            <h3>Scene: {this.state.currScene.id}</h3>
-            <form onSubmit={this.handleSubmit}>
-                <textarea name="text" value={this.state.currScene.text} onChange={this.handleChange}/>
-                <button>Save</button>
-            </form>
+            <SceneEditor scene={this.state.currScene}/>
             <button onClick={this.props.onDeselectStory}>Go Back</button>
         </div>
         )
