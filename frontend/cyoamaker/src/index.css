@@ -5,9 +5,85 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-image: url(./books.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  opacity: 1;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.paths {
+  display: flex;
+  flex-direction: column;
+}
+
+.h1 {
+  text-align: center;
+  color:rgb(0, 0, 0);
+  padding-top: 10px;
+  font-size: 3.5rem;
+}
+
+.home,
+.stories {
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.li-1,
+.li-2 {
+  text-align: center;
+}
+
+.li-2 {
+  margin-bottom: 20px;
+}
+
+.textbox{
+  text-align: center;
+}
+
+input {
+  background-color : rgb(207, 210, 212);
+  color : #000;
+  }
+
+  .h2Intro {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  .intro {
+    text-align: center;
+    padding:0;
+    margin-left: 30rem;
+    margin-right: 30rem;
+    margin-top: 0;
+    font-weight: bold;
+    font-size: 1.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background-color: rgba(128, 128, 128, 0.521);
+    border: 2px solid #00000000;
+  }
+
+  form.textarea {
+    bottom: 0;
+    position: relative;
+    display: inline-block;
+  }
+
+  .saveButton {
+    border-radius: 4px;
+    padding: 5px 22px;
+    font-size: 16px;
+    vertical-align: bottom;
+  }
