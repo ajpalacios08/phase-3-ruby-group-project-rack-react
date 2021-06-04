@@ -8,8 +8,12 @@ class StoryContainer extends React.Component{
     renderStories(stories)
     {
         return stories.map( (story, idx) => 
-            <li key={idx}>{story.name}</li>
+            <li key={idx} onClick={() =>this.selectStory(idx)}>{story.name}</li>
         )
+    }
+
+    selectStory = (index) => {
+        this.props.onSelectStory(this.props.stories[index]);
     }
 
     render(){

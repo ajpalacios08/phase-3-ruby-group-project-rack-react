@@ -24,9 +24,8 @@ class StoryEditor extends React.Component
             this.setState({scenes: resp.data.scenes})
             this.setState({currScene: resp.data.scenes[0]})
         })
-      }
+    }
     
-
     handleChange = (event) => {
         this.setState( {story: 
                 {
@@ -50,6 +49,7 @@ class StoryEditor extends React.Component
                 <textarea name="text" value={this.state.currScene.text} onChange={this.handleChange}/>
                 <button>Save</button>
             </form>
+            <button onClick={this.props.onDeselectStory}>Go Back</button>
         </div>
         )
     }

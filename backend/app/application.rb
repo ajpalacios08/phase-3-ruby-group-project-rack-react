@@ -13,6 +13,7 @@ class Application
       id = req.path.scan(/\d+/)
       rawData = JSON.parse(req.body.read)
       story = Story.create(name: rawData['name'] , description: rawData['description'],user_id: rawData['user_id'] )
+      firstScene = Scene.create(text: "", story_id: story.id)
       return [200, { 'Content-Type' => 'application/json' }, [ {:story => story}.to_json ]]
     elsif req.path.match(/user-\d+\/stories/)
       id = req.path.scan(/\d+/)

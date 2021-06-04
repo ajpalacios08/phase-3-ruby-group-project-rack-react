@@ -18,6 +18,7 @@ class App extends React.Component{
   constructor(){
     super();
     this.state = {
+      isEditorView: false,
       user: {
         id: 1,
         name: ""
@@ -42,9 +43,19 @@ class App extends React.Component{
     axios.get(finalURL)
     .then(userData=>{
         this.setState({stories: userData.data.stories })
-        this.setState({currStory: userData.data.stories[0]})
+        //this.setState({currStory: userData.data.stories[0]})
         console.log(userData.data.stories);
     })
+  }
+
+  handleSelectStory = (story) => {
+    this.setState({currStory: story})
+    this.setState({isEditorView: true})
+  }
+
+  handleDeselectStory = () => {
+    this.setState({currStory: {}})
+    this.setState({isEditorView: false})
   }
 
   onStoryPost = (story) =>
@@ -57,32 +68,25 @@ class App extends React.Component{
 
   render(){
     return(
-        <Router>
-          <div>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/story-editor">Story Editor</Link>
-            </li>
-          </div>
-          <Switch>
-            <Route path="/story-editor">
+        <div>
+          {
+            this.state.isEditorView ?
+
               <StoryEditor 
                 user={this.state.user} 
                 story={this.state.currStory} 
                 getScenes={this.getScenes}
+                onDeselectStory={this.handleDeselectStory}
               />
-            </Route>
-            <Route path="/">
+            :
               <Home 
                 onStoryPost={this.onStoryPost} 
+                onSelectStory={this.handleSelectStory}
                 user={this.state.user} 
                 stories={this.state.stories}
-              />               
-            </Route>
-          </Switch>
-        </Router>
+              />   
+           }
+        </div>            
     )
   }
 
