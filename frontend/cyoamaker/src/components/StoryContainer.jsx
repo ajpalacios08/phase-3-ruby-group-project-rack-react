@@ -19,7 +19,7 @@ class StoryContainer extends React.Component{
     render(){
         return(
             <div>
-                Story Container
+                Stories:
                 {this.renderStories(this.props.stories)}
             </div>
         )
