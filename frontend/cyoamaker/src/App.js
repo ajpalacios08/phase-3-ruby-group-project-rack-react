@@ -30,8 +30,8 @@ class App extends React.Component{
   componentDidMount(){
     axios.get(baseURL + "/users")
     .then( resp => {
-      this.setState({user: resp.data.users[0]});
-      this.fetchUserStories();
+        this.setState({user: resp.data.users[0]});
+        this.fetchUserStories();
       } 
     )
   }
@@ -47,11 +47,11 @@ class App extends React.Component{
     })
   }
 
-  onStoryPost(story)
+  onStoryPost = (story) =>
   {
     let finalURL = `${baseURL}/user-${this.state.user.id}/stories`;
 
-    axios.post(finalURL, this.state.story)
+    axios.post(finalURL, story)
     .then(console.log)
   }
 
@@ -63,7 +63,7 @@ class App extends React.Component{
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/story-editor">My Stories</Link>
+              <Link to="/story-editor">Story Editor</Link>
             </li>
           </div>
           <Switch>
@@ -71,6 +71,7 @@ class App extends React.Component{
               <StoryEditor 
                 user={this.state.user} 
                 story={this.state.currStory} 
+                getScenes={this.getScenes}
               />
             </Route>
             <Route path="/">
