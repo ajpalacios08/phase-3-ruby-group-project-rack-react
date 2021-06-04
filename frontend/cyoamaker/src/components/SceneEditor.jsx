@@ -39,11 +39,11 @@ class SceneEditor extends React.Component{
 
     render(){
         return (
-            <div>
+            <div className="textbox">
                 <h3>Scene: {this.props.scene.id}</h3>
                 <form onSubmit={this.handleSubmit}>
-                    <textarea name="text" value={this.state.text} onChange={this.handleChange}/>
-                    <button onClick={this.saveScene}>Save</button>
+                    <textarea rows="15" cols="100" style={{"vertical-align": "top"}} className="textarea" name="text" value={this.state.text} onChange={this.handleChange}/>
+                    <button className="saveButton" onClick={this.saveScene}>Save</button>
                 </form>
             </div>
         )

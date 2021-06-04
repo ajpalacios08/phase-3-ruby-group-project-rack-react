@@ -69,6 +69,7 @@ class App extends React.Component{
   render(){
     return(
         <div>
+          <h1 className="h1">David's Adventure</h1>
           {
             this.state.isEditorView ?
 

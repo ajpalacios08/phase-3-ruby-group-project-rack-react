@@ -37,7 +37,6 @@ class Body extends React.Component{
     render(){
         return(
             <div>
-                Body
                 <form onSubmit={this.handleClick} className="form">
                     <input type="text" placeholder="Story Name" name="name" value={this.state.story.name} onChange={this.handleChange}/>
                     <input type="text" placeholder="Description" name="description" value={this.state.story.description} onChange={this.handleChange} className="description" />
