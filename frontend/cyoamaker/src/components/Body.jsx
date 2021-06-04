@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-const url = 'http://localhost:9292/user-1/'
+const url = 'http://localhost:9292/user-1'
 
 class Body extends React.Component{
 
@@ -34,13 +34,22 @@ class Body extends React.Component{
             })
     }
 
+    handleSubmit = (event) =>{
+        event.preventDefault();
+
+        let targetURL = `${url}/stories`;
+
+        axios.post(targetURL, this.state.story)
+            .then(console.log)
+    }
+
     render(){
         return(
             <div>
                 <form onSubmit={this.handleClick} className="form">
                     <input type="text" placeholder="Story Name" name="name" value={this.state.story.name} onChange={this.handleChange}/>
                     <input type="text" placeholder="Description" name="description" value={this.state.story.description} onChange={this.handleChange} className="description" />
-                    <button type="button" class="btn btn-primary">Create a story!</button>
+                    <button type="button" class="btn btn-primary" onClick={this.handleSubmit}>Create a story!</button>
                 </form>
             </div>
         )
