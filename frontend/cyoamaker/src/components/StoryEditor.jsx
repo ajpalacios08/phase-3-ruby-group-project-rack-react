@@ -10,7 +10,8 @@ class StoryEditor extends React.Component
         super();
         this.state = {
             scenes: [],
-            currScene: {}
+            currScene: {},
+            isLoadingContent: true
         }
     }
 
@@ -22,8 +23,7 @@ class StoryEditor extends React.Component
         let finalURL = `${baseURL}/stories/${this.props.story.id}/scenes`;
         axios.get(finalURL)
         .then(resp => {
-            this.setState({scenes: resp.data.scenes})
-            this.setState({currScene: resp.data.scenes[0]})
+            this.setState({currScene: resp.data.scenes[0], scenes: resp.data.scenes, isLoadingContent: false})            
         })
     }
     
@@ -45,7 +45,9 @@ class StoryEditor extends React.Component
         return (
         <div>
             <h1>{this.props.story.name}</h1>
-            <SceneEditor scene={this.state.currScene}/>
+            {
+                this.state.isLoadingContent ? null : <SceneEditor scene={this.state.currScene}/>
+            }
             <button onClick={this.props.onDeselectStory}>Go Back</button>
         </div>
         )

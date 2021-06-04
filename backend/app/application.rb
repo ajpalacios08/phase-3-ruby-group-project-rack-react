@@ -21,6 +21,13 @@ class Application
     elsif req.path.match(/stories\/\d+\/scenes/)
       id = req.path.scan(/\d+/)
       return [200, { 'Content-Type' => 'application/json' }, [ {:scenes => Scene.where(story_id: id)}.to_json ]] 
+    elsif req.path.match(/scenes\/\d+/) && req.patch?
+      id = req.path.scan(/\d+/)
+      scene = Scene.where(id: id).first
+      rawData = JSON.parse(req.body.read)
+      scene.text = rawData["text"]
+      scene.save
+      return [200, { 'Content-Type' => 'application/json' }, [ {:scene => scene}.to_json ]] 
     elsif req.path.match(/users/) 
       return [200, { 'Content-Type' => 'application/json' }, [ {:users => User.all}.to_json ]] 
     else

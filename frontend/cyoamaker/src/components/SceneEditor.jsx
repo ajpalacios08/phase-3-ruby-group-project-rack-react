@@ -13,6 +13,7 @@ class SceneEditor extends React.Component{
     }
 
     componentDidMount(){
+        console.log(this.props)
         this.setState({text: this.props.scene.text})
     }
 
@@ -24,13 +25,25 @@ class SceneEditor extends React.Component{
         event.preventDefault();
     }
 
+    saveScene = () => {
+        let newSceneData = {
+            ...this.props.scene,
+            text: this.state.text
+        }
+
+        let targetURL = `${baseURL}/scenes/${newSceneData.id}`;
+
+        axios.patch(targetURL, newSceneData)
+        .then(console.log)
+    }
+
     render(){
         return (
             <div>
                 <h3>Scene: {this.props.scene.id}</h3>
                 <form onSubmit={this.handleSubmit}>
                     <textarea name="text" value={this.state.text} onChange={this.handleChange}/>
-                    <button>Save</button>
+                    <button onClick={this.saveScene}>Save</button>
                 </form>
             </div>
         )
