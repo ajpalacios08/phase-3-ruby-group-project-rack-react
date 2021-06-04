@@ -21,10 +21,6 @@ class SceneEditor extends React.Component{
         this.setState( {[event.target.name]: event.target.value} )
     }
 
-    handleSubmit = (event) => {
-        event.preventDefault();
-    }
-
     saveScene = () => {
         let newSceneData = {
             ...this.props.scene,

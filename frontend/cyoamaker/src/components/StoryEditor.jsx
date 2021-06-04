@@ -27,27 +27,32 @@ class StoryEditor extends React.Component
         })
     }
     
-    handleChange = (event) => {
-        this.setState( {story: 
-                {
-                    ...this.state.story,
-                    [event.target.name]: event.target.value
-                }
-            } 
-        )
+    generateSceneOptions = () => {
+      return this.state.scenes.map( (scene, idx) => {
+            return <option value={scene}>Scene ID:{scene.id}</option>
+        })
     }
 
-    handleSubmit = (event) => {
-        event.preventDefault();
+    handleChangeScene = (event) => {
+        let scene = event.target.value;
+        this.setState({currScene: scene})
+    }
+
+    loadingPlaceholder = () => {
+        return <h2>Please Wait...</h2>
     }
 
     render(){
         return (
         <div>
             <h1>{this.props.story.name}</h1>
+            <select name="currScene" onChange={this.handleChangeScene}>
+                {this.generateSceneOptions()}
+            </select>
             {
-                this.state.isLoadingContent ? null : <SceneEditor scene={this.state.currScene}/>
+                this.state.isLoadingContent ? this.loadingPlaceholder() : <SceneEditor scene={this.state.currScene}/>
             }
+            <button>New Scene</button>
             <button onClick={this.props.onDeselectStory}>Go Back</button>
         </div>
         )
