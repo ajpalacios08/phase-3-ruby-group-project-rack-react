@@ -34,13 +34,10 @@ class Body extends React.Component{
             })
     }
 
-    handleSubmit = (event) =>{
+    handleSubmit = (event) => {
         event.preventDefault();
 
-        let targetURL = `${url}/stories`;
-
-        axios.post(targetURL, this.state.story)
-            .then(console.log)
+        this.props.onStoryPost(this.state.story);
     }
 
     render(){
