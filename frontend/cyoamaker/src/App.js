@@ -10,6 +10,9 @@ import Header from './components/Header';
 import Home from './components/Home'
 import StoryEditor from './components/StoryEditor';
 
+
+
+
 class App extends React.Component{
 
   constructor(){
@@ -25,14 +28,16 @@ class App extends React.Component{
   render(){
     return(
         <Router>
-          <div>
-            <li>
-              <Link to="/">Home</Link>
+          <div className="paths">
+            <h1 className="h1">David's Adventure!</h1>
+            <li className="li-1">
+              <Link to="/" className="home">Home</Link>
             </li>
-            <li>
-              <Link to="/story-editor">My Stories</Link>
+            <li className="li-2">
+              <Link to="/story-editor" className="stories">My Stories</Link>
             </li>
           </div>
+          <div className="textbox">
           <Switch>
             <Route path="/story-editor">
               <StoryEditor />
@@ -41,6 +46,7 @@ class App extends React.Component{
               <Home />               
             </Route>
           </Switch>
+          </div>
         </Router>
     )
   }

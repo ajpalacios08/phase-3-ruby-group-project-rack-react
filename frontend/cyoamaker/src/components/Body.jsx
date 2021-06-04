@@ -39,10 +39,10 @@ class Body extends React.Component{
         return(
             <div>
                 Body
-                <form onSubmit={this.handleClick}>
+                <form onSubmit={this.handleClick} className="form">
                     <input type="text" placeholder="Story Name" name="name" value={this.state.story.name} onChange={this.handleChange}/>
-                    <input type="text" placeholder="Description" name="description" value={this.state.story.description} onChange={this.handleChange} />
-                    <button>Create a story!</button>
+                    <input type="text" placeholder="Description" name="description" value={this.state.story.description} onChange={this.handleChange} className="description" />
+                    <button type="button" class="btn btn-primary">Create a story!</button>
                 </form>
             </div>
         )
